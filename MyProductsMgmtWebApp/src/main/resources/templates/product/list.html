@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master-layout}">
+    <head>
+
+    </head>
+    <body>
+    <p>&nbsp;</p>
+    <th:block layout:fragment="content">
+        <h3>Currently list of product</h3>
+        <br/>
+        <th:block style="font-size: 1em">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Price</th>
+                    <th scope="col">Product Description</th>
+                <th scope="col">Product date Of Purchase</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product,iterStat : ${products}"
+                    th:onclick="@{document.location='/magazine/product/edit/{prodID}'(prodID=${product.prodID})}">
+                    <th scope="row" th:text="${iterStat.count}"></th>
+                    <td th:text="${product.prodName}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.productDescription}"></td>
+                  <td th:text="${product.datePrice}"></td> 
+                    <td><form th:action="@{'/magazine/product/delete/{prodID}'(prodID=${product.prodID})}" th:object="${product}" method="POST">
+                        
+                        <input type="submit" value="delete"/>
+                    </form></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </th:block>
+    </th:block>
+
+  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    </body>
+</html>
