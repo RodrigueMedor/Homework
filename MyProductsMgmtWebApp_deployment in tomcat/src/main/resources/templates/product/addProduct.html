@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/master-layout}">
+
+<head>
+    <title>About - Product - a homework spring boot webapp</title>
+</head>
+
+<body>
+    <p>&nbsp;</p>
+    <th:block layout:fragment="content">
+        <h3>Product Management system (PSM)</h3>
+        <hr />
+        <th:block style="font-size: 1em">
+            <h1>Add product Form</h1>
+            <form class="needs-validation" novalidate   action="#" th:action="@{addProduct}"  th:object="${product}" method="post">
+                <input type="hidden"  th:field="*{prodID}"/>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom01">Name of product</label>
+                        <input type="text" th:field="*{prodName}"  class="form-control" id="validationCustom01" placeholder="product name"
+                            value="Mark" required>
+                            <label th:if="${#fields.hasErrors('prodName')}" th:errors="${prodName}"  th:class="'error'">Errors in product name</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom02">Price of product</label>
+                        <input type="text" th:field="*{price}" class="form-control" id="validationCustom02" placeholder="price"
+                            value="Otto" required>
+                            <label th:if="${#fields.hasErrors('price')}" th:errors="${price}"  th:class="'error'">Errors in product price</label>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationCustom03">Description of product</label>
+                        <input type="text" th:field="*{productDescription}" class="form-control" id="validationCustom03" placeholder="description" required>
+                        <label th:if="${#fields.hasErrors('productDescription')}" th:errors="${productDescription}"  th:class="'error'">Errors in product description</label>
+                        <div class="invalid-feedback">
+                            Please provide a valid city.
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationCustom04">Date of product</label>
+                        <input type="date" th:field="*{datePrice}" class="form-control" id="validationCustom04" placeholder="date" required>
+                        <label th:if="${#fields.hasErrors('datePrice')}" th:errors="${datePrice}"  th:class="'error'">Errors in product date</label>
+                        <div class="invalid-feedback">
+                            Please provide a valid state.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                        <label class="form-check-label" for="invalidCheck">
+                            Agree to terms and conditions
+                        </label>
+                        <div class="invalid-feedback">
+                            You must agree before submitting.
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit form</button>
+            </form>
+
+            <script>
+                // Example starter JavaScript for disabling form submissions if there are invalid fields
+                (function () {
+                    'use strict';
+                    window.addEventListener('load', function () {
+                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                        var forms = document.getElementsByClassName('needs-validation');
+                        // Loop over them and prevent submission
+                        var validation = Array.prototype.filter.call(forms, function (form) {
+                            form.addEventListener('submit', function (event) {
+                                if (form.checkValidity() === false) {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                }
+                                form.classList.add('was-validated');
+                            }, false);
+                        });
+                    }, false);
+                })();
+            </script>
+            <!--<footer class="footer">
+        <div class="container">
+            <span class="text-muted">O. Kalu : : : CS425-SWE</span><span style="float:right;" class="text-muted">&copy; November 2018</span>
+        </div>
+    </footer> -->
+
+            <!-- Bootstrap core JavaScript
+================================================== -->
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+                integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+                crossorigin="anonymous"></script>
+</body>
+
+</html>
