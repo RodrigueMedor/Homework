@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{secure/layouts/master-page-layout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/book/book.css}" />
+    <title>eLibrary - Browsing List of Books</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div>
+        <span style="font-size: 1.5em">List of Books in stock</span>
+<!--        <form action="/action_page.php">-->
+<!--            <input type="text" name="fname">-->
+<!--            <input type="submit" value="Search">-->
+<!--        </form>-->
+
+
+    </div>
+    <div class="search-container">
+        <form action="#" th:action="@{/eLibraryFinal/secure/book/search}" th:object="${search}">
+            Search:
+            <input name="search"id="search">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    <p>&nbsp;</p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Book Number</th>
+            <th scope="col">Title</th>
+            <th scope="col">ISBN</th>
+            <th scope="col">Author</th>
+            <th scope="col">Description</th>
+            <th scope="col">Position</th>
+            <th scope="col">date Added</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Alternative non-obstrusive js solution for <tr onclick>:
+            HTML markup: <tr data-href="some-url">
+            JS function using JQuery: $('tr[data-href]').on("click", function() {
+                                        document.position = $(this).data('href');
+                                    });
+         -->
+        <!--<tr class="datarow" th:each="book,iterStat : ${books}" th:onclick="@{document.position='/prodmgmt/books/edit/{bookId}'(productId=${book.productId})}">-->
+      <tr class="datarow" th:each="book,iterStat : ${books}" th:onclick="@{document.position='#'}">
+            <th scope="row" th:text="${iterStat.count}+'.'"></th>
+            <td th:text="${book.bookNumber}"></td>
+            <td th:text="${book.title}"></td>
+            <td th:text="${book.isbn}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.description}"></td>
+            <td th:text="${book.position.section + ', ' + book.position.line} "></td>
+            <td th:text="${book.dateAdded}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <span style="float:right;">
+                <a class="btn btn-outline-success btn-lg" href="/eLibraryFinal/secure/book/new">Add a Book</a>
+    </span>
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>

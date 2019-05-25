@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{secured/layouts/master-page-layout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/book/book.css}" />
+    <title>eLibrary - Add a New book</title>
+</head>
+<body> <!--onload="document.querySelector('#booksNumber').focus();"-->
+<th:block layout:fragment="content">
+    <form id="bookForm" method="post" action="/eLibraryFinal/secured/book/new" th:object="${book}">
+        <fieldset>
+            <legend>New book Form</legend>
+            <div class="container" style="margin-top: 1em;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="hidden" name="bookId" th:value="${book.bookId}" />
+                        <div class="form-group">
+                            <label for="bookNumber">Book Number</label>
+                            <small><span th:if="${#fields.hasErrors('bookNumber')}" th:errors="*{bookNumber}"
+                                         class="alert alert-danger"></span></small>
+                            <input id="bookNumber" name="bookNumber" type="text" class="form-control" th:value="${book.bookNumber}" required autofocus="autofocus">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
+                                  class="alert alert-danger"></span>
+                            <input id="title" name="title" type="text" class="form-control" th:value="${book.title}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="isbn">ISBN</label>
+                            <span th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"
+                                  class="alert alert-danger"></span>
+                            <input id="isbn" name="isbn" type="text" class="form-control" th:value="${book.isbn}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="author">Author</label>
+                            <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}"
+                                  class="alert alert-danger"></span>
+                            <input id="author" name="author" type="text" class="form-control" th:value="${book.author}" required="required">
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                                  class="alert alert-danger"></span>
+                            <input id="description" name="description" type="text" class="form-control" th:value="${book.description}" required="required">
+                        </div>
+
+<!--                        <div class="form-group">-->
+<!--                            <label for="position">Position</label>-->
+<!--                            <span th:if="${#fields.hasErrors('position')}" th:errors="*{position}"-->
+<!--                                  class="alert alert-danger"></span>-->
+<!--                            <input id="position" name="position" type="text" class="form-control" th:value="${book.position}" required="required">-->
+
+<!--                        </div>-->
+                        <div class="form-group">
+                            <label for="dateAdded">Date Added</label>
+                            <span th:if="${#fields.hasErrors('dateAdded')}" th:errors="*{dateAdded}"
+                                  class="alert alert-danger"></span>
+                            <input id="dateAdded" name="dateAdded" type="date" class="form-control" aria-describedby="dateAddedHelp" th:value="${book.dateAdded}" required="required">
+                            <small id="dateAddedHelp" class="form-text text-muted">Enter a valid Date.</small>
+                        </div>
+                        <div style="float:right;">
+
+                            <button id="btnReset" type="reset" class="btn btn-outline-info" style="margin-right: 2em;">Reset</button>
+                            <a href="/eLibraryFinal/secured/book/browse" class="btn btn-outline-warning" style="margin-right: 2em;">Cancel</a>
+                            <button id="btnSubmit" type="submit" class="btn btn-outline-primary">Add book</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</th:block>
+<br/>
+<br/>
+<th:block layout:fragment="footer"/>
+
+</body>
+</html>

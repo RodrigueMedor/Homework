@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{secure/layouts/master-page-layout}" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/book/book.css}" />
+    <title>eLibrary - Add a New book</title>
+</head>
+<body> <!--onload="document.querySelector('#booksNumber').focus();"-->
+
+    <th:block layout:fragment="content">
+        <form id="bookForm" method="POST"  th:action="@{/eLibraryFinal/secure/book/new}" th:object="${book}">
+            <fieldset>
+                <legend>New book Form</legend>
+                <div class="container" style="margin-top: 1em;">
+                    <div class="row">
+                        <div class="col-md-6">
+<!--                          <input type="hidden" name="bookId" th:value="${book.bookId}" />-->
+                            <div class="form-group">
+                                <label for="bookNumber">Book Number</label>
+<!--                                <small><span th:if="${#fields.hasErrors('bookNumber')}" th:errors="*{bookNumber}"-->
+                                      class="alert alert-danger"></span></small>
+                                <input id="bookNumber" name="bookNumber" type="text" class="form-control" required autofocus="autofocus">
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Title</label>
+<!--                                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="alert alert-danger"></span>-->
+                                <input id="title" name="title" type="text" class="form-control"  required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="isbn">ISBN</label>
+<!--                                <span th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}" class="alert alert-danger"></span>-->
+                                <input id="isbn" name="isbn" type="text" class="form-control"  required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Author</label>
+<!--                                <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="alert alert-danger"></span>-->
+                                <input id="author" name="author" type="text" class="form-control"  required="required">
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="description">Description</label>
+<!--                                <span th:if="${#fields.hasErrors('author')}" th:errors="*{description}" class="alert alert-danger"></span>-->
+                                <input id="description" name="description" type="text" class="form-control"  required="required">
+                            </div>
+
+                           <div class="form-group">
+                                <label for="category">Category:</label>
+<!--                                <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="alert alert-danger"></span>-->
+                                <select name="category" id="category" class="form-control" required="required">
+                                    <option value="">Select a category</option>
+                                    <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="numOfCopies">Number of copies</label>
+<!--                                <span th:if="${#fields.hasErrors('numOfCopies')}" th:errors="*{numOfCopies}" class="alert alert-danger"></span>-->
+                                <input id="numOfCopies" name="numOfCopies" type="text" class="form-control"  required="required">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="position">Position:</label>
+<!--                                <span th:if="${#fields.hasErrors('position')}" th:errors="*{position}" class="alert alert-danger"></span>-->
+                                <select name="position" id="position" class="form-control" required="required">
+                                    <option value="">Select a position</option>
+                                    <option th:each="position : ${positions}" th:value="${position.positionId}" th:text="${position.section + ', ' + position.line }"></option>
+                                </select>
+                            </div>
+
+                            <div style="float:right;">
+                                <button id="btnReset" type="reset" class="btn btn-outline-info" style="margin-right: 2em;">Reset</button>
+                                <a href="/eLibraryFinal/secured/book/browse" class="btn btn-outline-warning" style="margin-right: 2em;">Cancel</a>
+                                <button id="btnSubmit" type="submit" class="btn btn-outline-primary">Add book</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </th:block>
+</div>
+    <br/>
+    <br/>
+    <th:block layout:fragment="footer"/>
+
+</body>
+</html>

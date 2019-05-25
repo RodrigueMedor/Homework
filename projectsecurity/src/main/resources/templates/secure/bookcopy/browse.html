@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{secure/layouts/master-page-layout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/book/book.css}" />
+    <title>eLibrary - Browsing List of Books</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div>
+        <span style="font-size: 1.5em">List of Books in stock</span>
+<!--        <form action="/action_page.php">-->
+<!--            <input type="text" name="fname">-->
+<!--            <input type="submit" value="Search">-->
+<!--        </form>-->
+
+
+    </div>
+    <div class="search-container">
+        <form action="#" th:action="@{/eLibraryFinal/secured/bookcopy/search}" th:object="${search}">
+            Search:
+            <input name="search"id="search" type="number">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    <p>&nbsp;</p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Book Copy Number</th>
+            <th scope="col">Book Title</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Alternative non-obstrusive js solution for <tr onclick>:
+            HTML markup: <tr data-href="some-url">
+            JS function using JQuery: $('tr[data-href]').on("click", function() {
+                                        document.position = $(this).data('href');
+                                    });
+         -->
+        <!--<tr class="datarow" th:each="book,iterStat : ${books}" th:onclick="@{document.position='/prodmgmt/books/edit/{bookId}'(productId=${book.productId})}">-->
+      <tr class="datarow" th:each="bookCopy,iterStat : ${bookCopies}" th:onclick="@{document.position='#'}">
+            <th scope="row" th:text="${iterStat.count}+'.'"></th>
+            <td th:text="${bookCopy.bookCopyNumber}"></td>
+            <td th:text="${bookCopy.book.title}"></td>
+            <td><form action="#" data-th-action="@{/eLibraryFinal/secured/bookcopy/check}" data-th-object="${model}" method="post">
+                <input name="usernumber"id="usernumber">
+                <input name="bookCopyNumber"id="bookCopyNumber" hidden="true" th:value="${bookCopy.bookCopyNumber}">
+                <button type="submit" name="action" value="in">Check in</button>
+                <button type="submit" name="action" value="out">Check out</button>
+            </form>
+
+<!--                <form action="#" th:object="${/eLibraryFinal/secured/bookcopy/check}">-->
+<!--                User id:-->
+<!--                <input name="userid"id="userid">-->
+<!--                <input type="submit" class="button" name="checkout" th:action="@{/eLibraryFinal/secured/bookcopy/search}" value="Check out">-->
+<!--                <input type="submit" class="button" name="checkin"  th:action="@{/eLibraryFinal/secured/bookcopy/search}"  value="Check in">-->
+<!--            </form>-->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+<!--    <span style="float:right;">-->
+<!--                <a class="btn btn-outline-success btn-lg" href="/eLibraryFinal/secured/book/new">Add a Book</a>-->
+<!--    </span>-->
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>

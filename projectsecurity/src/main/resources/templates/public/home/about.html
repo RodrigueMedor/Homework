@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{public/layouts/master-layout}">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/public/css/home/index.css}"/>
+    <title>The eLibrary - About</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <h3>About the eLibrary</h3>
+    <hr/>
+    <div style="font-size: 1em">
+        <p>We are a top-flight, fully-digitized library.
+            Find out more <a href="/elibrary/public/about">about us</a> and
+            and learn how we can serve you with a widest variety of books and lots of other
+            digital content, all for your education as well as your entertainment.
+            You can also <a href="/elibrary/public/virtualtour">take a virtual tour</a>,
+            of our world-class facilities and be amazed at all what we have in stock
+            for you, your family and friends.</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining</p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s with
+            the release of Letraset sheets containing Lorem Ipsum passages, and
+            more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <p>Already have access? Then, simply <a href="/projectsecurity/public/login">Sign-In.</a></p>
+    </div>
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
+</body>
+</html>
